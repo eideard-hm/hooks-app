@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import CounterWithCustomHook from './CounterWithCustomHook';
 
 const CounterApp = () => {
 
@@ -27,6 +28,12 @@ const CounterApp = () => {
                 onClick={handleCounter}>
                 +1
             </button>
+
+            <br />
+            <br />
+            <br />
+            <hr />
+            <CounterWithCustomHook />
         </>
     )
 };
