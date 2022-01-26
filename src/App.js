@@ -2,6 +2,7 @@ import CounterApp from "./components/01-useState/CounterApp";
 import FormWithCustomHook from "./components/02-useEffect/FormWithCustomHook";
 import SimpleForm from "./components/02-useEffect/SimpleForm";
 import FocusScreen from "./components/03-useRef/FocusScreen";
+import RealExampleRef from "./components/03-useRef/RealExampleRef";
 import MultipleCustomHooks from "./components/examples/MultipleCustomHooks";
 
 function App() {
@@ -34,6 +35,9 @@ function App() {
       <section className="column">
         <h3 className="text-center">useRef</h3>
         <FocusScreen />
+        <hr/>
+        <br/>
+        <RealExampleRef />
       </section>
 
     </div>
