@@ -3,6 +3,7 @@ import FormWithCustomHook from "./components/02-useEffect/FormWithCustomHook";
 import SimpleForm from "./components/02-useEffect/SimpleForm";
 import FocusScreen from "./components/03-useRef/FocusScreen";
 import RealExampleRef from "./components/03-useRef/RealExampleRef";
+import MemoHook from "./components/06-Memos/MemoHook";
 import Memorize from "./components/06-Memos/Memorize";
 import MultipleCustomHooks from "./components/examples/MultipleCustomHooks";
 
@@ -44,6 +45,10 @@ function App() {
       <section className="column">
         <h3 className="text-center">Memos</h3>
         <Memorize />
+        <hr />
+        <br/>
+        <h3 className="text-center">useMemo - Memorizar</h3>
+        {/* <MemoHook /> */}
       </section>
 
     </div>
