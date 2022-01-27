@@ -1,12 +1,13 @@
 import CounterApp from "./components/01-useState/CounterApp";
-import FormWithCustomHook from "./components/02-useEffect/FormWithCustomHook";
-import SimpleForm from "./components/02-useEffect/SimpleForm";
-import FocusScreen from "./components/03-useRef/FocusScreen";
-import RealExampleRef from "./components/03-useRef/RealExampleRef";
-import CallbackHook from "./components/06-Memos/CallbackHook";
+// import FormWithCustomHook from "./components/02-useEffect/FormWithCustomHook";
+// import SimpleForm from "./components/02-useEffect/SimpleForm";
+// import FocusScreen from "./components/03-useRef/FocusScreen";
+// import RealExampleRef from "./components/03-useRef/RealExampleRef";
+// import CallbackHook from "./components/06-Memos/CallbackHook";
 // import MemoHook from "./components/06-Memos/MemoHook";
-import Memorize from "./components/06-Memos/Memorize";
-import MultipleCustomHooks from "./components/examples/MultipleCustomHooks";
+// import Memorize from "./components/06-Memos/Memorize";
+import { Padre } from "./components/07-tarea-memo/Padre";
+// import MultipleCustomHooks from "./components/examples/MultipleCustomHooks";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
         <CounterApp />
       </section>
 
-      <section className="column">
+      {/* <section className="column">
         <h3 className="text-center">useEffect</h3>
         <SimpleForm />
         <br />
@@ -49,12 +50,17 @@ function App() {
         <hr />
         <br/>
         <h3 className="text-center">useMemo - Memorizar</h3>
-        {/* <MemoHook /> */}
+        <MemoHook />
 
         <hr />
         <br/>
         <h3 className="text-center">useCallback - Memorizar</h3>
         <CallbackHook />
+      </section> */}
+
+      <section className="column">
+        <h3 className="text-center">Tarea Memorize</h3>
+        <Padre />
       </section>
 
     </div>
