@@ -1,30 +1,48 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import todoReducer from './todoReducer';
 
 import './reducer.css';
+import useForm from '../../hooks/useForm';
 
-const initalState = [{
-    id: Date.now(),
-    desc: 'Aprender react',
-    done: false
-}]
+const init = () => {
+    return JSON.parse(localStorage.getItem('todos')) || []
+}
 
 const TodoApp = () => {
 
-    const [todos, dispatch] = useReducer(todoReducer, initalState);
+    const [todos, dispatch] = useReducer(todoReducer, [], init);
+
+    const [{ description }, handleInputChange, reset] = useForm({ description: '' });
+
+    useEffect(() => {
+        localStorage.setItem('todos', JSON.stringify(todos));
+    }, [todos])
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const newTodo = {
-            id: Date.now(),
-            desc: 'Nueva tarea',
-            done: false
-        }
+        if (description.trim().length >= 2) {
 
+            const newTodo = {
+                id: Date.now(),
+                desc: description,
+                done: false
+            }
+
+            const action = {
+                type: 'add',
+                payload: newTodo
+            }
+
+            dispatch(action);
+            reset();
+        }
+    }
+
+    const handleDelete =  (id) => {
         const action = {
-            type: 'add',
-            payload: newTodo
+            type: 'delete',
+            payload: id
         }
 
         dispatch(action);
@@ -41,7 +59,7 @@ const TodoApp = () => {
                         {todos.map((todo, i) => (
                             <li key={todo.id} className='list-group-item'>
                                 <p className='text-center'>{i + 1}. {todo.desc}</p>
-                                <button className='btn btn-danger'>
+                                <button className='btn btn-danger' onClick={() => handleDelete(todo.id)}>
                                     Delete
                                 </button>
                             </li>
@@ -60,7 +78,9 @@ const TodoApp = () => {
                                 name='description'
                                 placeholder='Aprender...'
                                 autoComplete='off'
-                                className='form-control' />
+                                className='form-control'
+                                value={description}
+                                onChange={handleInputChange} />
                         </div>
 
                         <button type='submit' className='btn btn-outline-primary mt-2'>
