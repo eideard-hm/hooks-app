@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer, useRef } from 'react';
 import todoReducer from './todoReducer';
 
 import './reducer.css';
@@ -11,8 +11,8 @@ const init = () => {
 const TodoApp = () => {
 
     const [todos, dispatch] = useReducer(todoReducer, [], init);
-
     const [{ description }, handleInputChange, reset] = useForm({ description: '' });
+    const toogleDone = useRef();
 
     useEffect(() => {
         localStorage.setItem('todos', JSON.stringify(todos));
@@ -39,13 +39,20 @@ const TodoApp = () => {
         }
     }
 
-    const handleDelete =  (id) => {
+    const handleDelete = (id) => {
         const action = {
             type: 'delete',
             payload: id
         }
 
         dispatch(action);
+    }
+
+    const toggleTodo = (id) => {
+        dispatch({
+            type: 'done',
+            payload: id
+        });
     }
 
     return (
@@ -58,8 +65,14 @@ const TodoApp = () => {
                     <ul className='list-group list-group-flush'>
                         {todos.map((todo, i) => (
                             <li key={todo.id} className='list-group-item'>
-                                <p className='text-center'>{i + 1}. {todo.desc}</p>
-                                <button className='btn btn-danger' onClick={() => handleDelete(todo.id)}>
+                                <p className={`${todo.done && 'complete'}`}
+                                    onClick={() => toggleTodo(todo.id)}
+                                    ref={toogleDone}>
+                                    {i + 1}. {todo.desc}
+                                </p>
+
+                                <button className='btn btn-danger'
+                                    onClick={() => handleDelete(todo.id)}>
                                     Delete
                                 </button>
                             </li>
